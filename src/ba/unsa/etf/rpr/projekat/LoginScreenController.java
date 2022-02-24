@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.projekat;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,8 +36,8 @@ public class LoginScreenController {
 
     @FXML
     public void createAccountAction(ActionEvent actionEvent){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RegisterScene.fxml"));
-        RegisterSceneController ctrl = new RegisterSceneController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RegisterScreen.fxml"));
+        RegisterScreenController ctrl = new RegisterScreenController();
         loader.setController(ctrl);
         Parent root = null;
         try {

@@ -14,7 +14,10 @@
 .text-field:focused {
 	-fx-background-color: -fx-primary-color, white;
 }
-.register-label:hover {
+.register-button {
+    -fx-text-fill: -fx-grey-color;
+}
+.register-button:hover {
     -fx-text-fill: -fx-primary-color;
     -fx-font-size: 12.5;
 }

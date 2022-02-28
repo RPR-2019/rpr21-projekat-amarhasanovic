@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXScrollPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,9 +13,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane prefHeight="624.0" prefWidth="876.0" styleClass="subtle-gray-gradient" stylesheets="@../css/colorBackground.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <left>
@@ -52,20 +53,29 @@
                </GridPane.margin>
             </ImageView>
             <TextField maxWidth="1.7976931348623157E308" promptText="Search" style="-fx-background-radius: 25;" GridPane.columnIndex="1" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="97.0" spacing="3.0" GridPane.columnIndex="2">
+            <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2">
                <children>
                   <JFXButton focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#minimizeAction" styleClass="tool-bar-buttons" stylesheets="@../css/textField.css" text="_">
-                     <padding>
-                        <Insets left="15.0" right="15.0" />
-                     </padding>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton contentDisplay="GRAPHIC_ONLY" ellipsisString="" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#maximizeAction" prefHeight="42.0" prefWidth="26.0" styleClass="tool-bar-buttons" stylesheets="@../css/textField.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="12.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../pictures/maximize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </JFXButton>
                   <JFXButton focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#exitAction" styleClass="tool-bar-buttons" stylesheets="@../css/textField.css" text="X">
-                     <padding>
-                        <Insets left="15.0" right="15.0" />
-                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </JFXButton>
                </children>
             </HBox>
@@ -75,4 +85,11 @@
          </padding>
       </GridPane>
    </top>
+   <center>
+      <JFXScrollPane BorderPane.alignment="CENTER">
+         <children>
+            <TilePane fx:id="tilePane" styleClass="subtle-gray-gradient" stylesheets="@../css/colorBackground.css" />
+         </children>
+      </JFXScrollPane>
+   </center>
 </BorderPane>

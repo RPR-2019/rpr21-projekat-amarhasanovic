@@ -46,7 +46,7 @@
          <children>
             <ImageView fitHeight="40.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../pictures/kindpng_1715998.png" />
+                  <Image url="@../pictures/logo.png" />
                </image>
                <GridPane.margin>
                   <Insets left="15.0" right="15.0" />
@@ -67,7 +67,7 @@
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="12.0" preserveRatio="true">
                            <image>
-                              <Image url="@../pictures/maximize.png" />
+                              <Image url="@../pictures/maximizeIcon.png" />
                            </image>
                         </ImageView>
                      </graphic>

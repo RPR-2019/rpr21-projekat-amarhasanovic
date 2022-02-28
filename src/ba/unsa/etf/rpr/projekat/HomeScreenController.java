@@ -6,9 +6,9 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -29,15 +29,22 @@ public class HomeScreenController {
     public void initialize(){
         try {
             sideBarSetUp();
-
             tilePane.getChildren().clear();
-            VBox vbox = FXMLLoader.load(getClass().getResource("/fxml/Advertisment.fxml"));
-            tilePane.getChildren().add(vbox);
+            tilePane.getChildren().add(advertisment("demand"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    private VBox advertisment(String type) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Advertisment.fxml"));
+        AdvertismentController ctrl = null;
+        if(type.equals("offer"))
+            ctrl = new AdvertismentController("/pictures/jobOffer.png");
+        else if(type.equals("demand"))
+            ctrl = new AdvertismentController("/pictures/jobDemand.png");
+        loader.setController(ctrl);
+        return loader.load();
+    }
     private void sideBarSetUp() throws IOException {
         VBox vbox = FXMLLoader.load(getClass().getResource("/fxml/DrawerContent.fxml"));
         drawer.setSidePane(vbox);

@@ -24,3 +24,6 @@
 .tool-bar-buttons:hover {
     -fx-background-color: rgba(0,0,0,0.4);
 }
+.ad-button:hover {
+    -fx-background-color: rgba(0,0,0,0.2);
+}

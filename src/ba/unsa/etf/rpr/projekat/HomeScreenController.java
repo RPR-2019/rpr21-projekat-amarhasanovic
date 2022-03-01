@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -23,17 +24,33 @@ public class HomeScreenController {
     private JFXHamburger hamburger;
     @FXML
     private TilePane tilePane;
+    @FXML
+    private GridPane topBar;
     private Button btnSelektovanaSlika;
-
+    private double x = 0, y = 0;
     @FXML
     public void initialize(){
         try {
+            screenDragSetUp();
             sideBarSetUp();
             tilePane.getChildren().clear();
             tilePane.getChildren().add(advertisment("demand"));
+            tilePane.getChildren().add(advertisment("offer"));
+            tilePane.getChildren().add(advertisment("demand"));
+            tilePane.getChildren().add(advertisment("offer"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void screenDragSetUp() {
+        topBar.setOnMousePressed(mouseEvent -> {
+            x = mouseEvent.getSceneX();
+            y = mouseEvent.getSceneY();
+        });
+        topBar.setOnMouseDragged(mouseEvent -> {
+            stage.setX(mouseEvent.getScreenX() - x);
+            stage.setY(mouseEvent.getScreenY() - y);
+        });
     }
     private VBox advertisment(String type) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Advertisment.fxml"));

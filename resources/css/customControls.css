@@ -27,3 +27,35 @@
 .ad-button:hover {
     -fx-background-color: rgba(0,0,0,0.2);
 }
+.filter-button {
+    -fx-background-color: rgba(51, 51, 51, 0.05);
+    -fx-border-radius: 8px;
+    -fx-color: #333333;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-line-height: 20px;
+}
+.filter-button:hover {
+    -fx-background-color: rgba(51, 51, 51, 0.25);
+}
+.account-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+}
+.account-button:hover, .account-button:focused {
+    -fx-background-color: -fx-grey-color;
+}
+.account-button .label:hover{
+    -fx-text-fill: rgba(51, 51, 51, 0.75);
+    -fx-background-color: -fx-grey-color;
+}
+.menu-item:hover, .menu-item:focused{
+    -fx-background-color: -fx-grey-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+}
+.side-bar{
+    -fx-background-color: linear-gradient(to right top, #facd68, #fc76b3);
+    -fx-background-radius: 0 20 20 0;
+}

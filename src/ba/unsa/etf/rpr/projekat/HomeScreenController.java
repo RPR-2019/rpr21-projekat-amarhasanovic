@@ -10,9 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -63,8 +61,8 @@ public class HomeScreenController {
         return loader.load();
     }
     private void sideBarSetUp() throws IOException {
-        VBox vbox = FXMLLoader.load(getClass().getResource("/fxml/DrawerContent.fxml"));
-        drawer.setSidePane(vbox);
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/fxml/DrawerContent.fxml"));
+        drawer.setSidePane(anchorPane);
         HamburgerBackArrowBasicTransition burgerTask = new HamburgerBackArrowBasicTransition(hamburger);
         burgerTask.setRate(-1);
         hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {

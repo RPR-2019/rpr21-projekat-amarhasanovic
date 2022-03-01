@@ -4,11 +4,14 @@
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXScrollPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,7 +25,7 @@
 
 <BorderPane prefHeight="624.0" prefWidth="876.0" styleClass="subtle-gray-gradient" stylesheets="@../css/colorBackground.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <VBox prefHeight="442.0" prefWidth="148.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="442.0" prefWidth="148.0" spacing="5.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
          <children>
             <JFXHamburger fx:id="hamburger" fillWidth="false" prefHeight="20.0" prefWidth="94.0" VBox.vgrow="NEVER">
                <VBox.margin>
@@ -70,7 +73,7 @@
                         <Image url="@../pictures/avatar-default.png" />
                      </image>
                   </ImageView>
-                  <SplitMenuButton mnemonicParsing="false" text="Username ">
+                  <SplitMenuButton mnemonicParsing="false" styleClass="account-button" stylesheets="@../css/customControls.css" text="Username ">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Profile page" />
                       <MenuItem mnemonicParsing="false" text="Settings" />
@@ -89,10 +92,22 @@
    <center>
       <JFXScrollPane BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="tilePane" hgap="5.0" styleClass="subtle-gray-gradient" stylesheets="@../css/colorBackground.css" vgap="5.0">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding></TilePane>
+            <VBox styleClass="subtle-gray-gradient" stylesheets="@../css/colorBackground.css">
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                    <items>
+                        <Label style="-fx-text-fill: #b9b9b9;" text="Order by: " />
+                      <Button mnemonicParsing="false" styleClass="filter-button" stylesheets="@../css/customControls.css" text="Date - ASC" />
+                    </items>
+                  </ToolBar>
+                  <Separator prefWidth="200.0" />
+                  <TilePane fx:id="tilePane" hgap="5.0" style="-fx-background-color: transparent;" styleClass="subtle-gray-gradient" stylesheets="@../css/colorBackground.css" vgap="5.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TilePane>
+               </children>
+            </VBox>
          </children>
       </JFXScrollPane>
    </center>

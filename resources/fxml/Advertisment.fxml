@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="5.0" styleClass="ad-button" stylesheets="@../css/textField.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" spacing="5.0" styleClass="ad-button" stylesheets="@../css/customControls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" text="Naziv oglasa" wrapText="true">
          <graphic>

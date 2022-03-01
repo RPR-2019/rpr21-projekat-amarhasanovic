@@ -11,13 +11,13 @@
          <children>
             <VBox layoutX="40.0" layoutY="14.0" prefHeight="179.0" prefWidth="220.0" spacing="7.0">
                <children>
-                  <TextField promptText="Name" styleClass="text-field" stylesheets="@../css/textField.css" />
-                  <TextField promptText="Last Name" styleClass="text-field" stylesheets="@../css/textField.css" />
-                  <TextField promptText="E-mail" styleClass="text-field" stylesheets="@../css/textField.css" />
-                  <TextField promptText="Phone" styleClass="text-field" stylesheets="@../css/textField.css" />
-                  <TextField promptText="Address" styleClass="text-field" stylesheets="@../css/textField.css" />
-                  <TextField promptText="Password" styleClass="text-field" stylesheets="@../css/textField.css" />
-                  <TextField promptText="Re-enter password" styleClass="text-field" stylesheets="@../css/textField.css" />
+                  <TextField promptText="Name" styleClass="text-field" stylesheets="@../css/customControls.css" />
+                  <TextField promptText="Last Name" styleClass="text-field" stylesheets="@../css/customControls.css" />
+                  <TextField promptText="E-mail" styleClass="text-field" stylesheets="@../css/customControls.css" />
+                  <TextField promptText="Phone" styleClass="text-field" stylesheets="@../css/customControls.css" />
+                  <TextField promptText="Address" styleClass="text-field" stylesheets="@../css/customControls.css" />
+                  <TextField promptText="Password" styleClass="text-field" stylesheets="@../css/customControls.css" />
+                  <TextField promptText="Re-enter password" styleClass="text-field" stylesheets="@../css/customControls.css" />
                </children>
             </VBox>
             <JFXButton buttonType="RAISED" layoutX="97.0" layoutY="245.0" styleClass="colorGradient" stylesheets="@../css/colorBackground.css" text="Register Account" />

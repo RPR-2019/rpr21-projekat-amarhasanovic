@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.projekat;
+package ba.unsa.etf.rpr.projekat.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;

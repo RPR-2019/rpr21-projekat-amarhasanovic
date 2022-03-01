@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.projekat;
+package ba.unsa.etf.rpr.projekat.Controllers;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;

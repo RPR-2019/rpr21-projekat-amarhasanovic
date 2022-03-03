@@ -6,29 +6,35 @@ import javafx.collections.ObservableList;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AdvertismentModel {
     private static AdvertismentModel instance = null;
-    private ObservableList<Advertisment> advertisments = FXCollections.observableArrayList();
 
     private PreparedStatement getAllAdvertismentsStatement, findAdvertismentStatement, getAllUsersStatement;
+    private PreparedStatement registerNewUserStatement, nextIdStatement;
     private Connection conn;
 
     public AdvertismentModel(){
         try{
             conn = DriverManager.getConnection("jdbc:sqlite:advertisment.db");
-            getAllUsersStatement = conn.prepareStatement("SELECT * FROM users");
+            preparedStatements();
         }catch (SQLException e){
             reloadDataBase();
             try{
-                getAllUsersStatement = conn.prepareStatement("SELECT * FROM users");
-                getAllAdvertismentsStatement = conn.prepareStatement("SELECT * FROM advertisment");
-                findAdvertismentStatement = conn.prepareStatement("SELECT * FROM advertisment WHERE title LIKE %?% OR description LIKE %?%");
+                preparedStatements();
             }catch (SQLException ex){
                 ex.printStackTrace();
             }
         }
+    }
+    private void preparedStatements() throws SQLException {
+        getAllUsersStatement = conn.prepareStatement("SELECT * FROM users");
+        getAllAdvertismentsStatement = conn.prepareStatement("SELECT * FROM advertisment");
+        registerNewUserStatement = conn.prepareStatement("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)");
+        nextIdStatement = conn.prepareStatement("SELECT max(id) FROM users");
     }
     public static AdvertismentModel getInstance(){
         if(instance == null)
@@ -86,12 +92,50 @@ public class AdvertismentModel {
         }
     }
 
-
-    public ObservableList<Advertisment> getAdvertisments() {
-        return advertisments;
+    public List<User> getAllUsers() {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            ResultSet usersResultSet = getAllUsersStatement.executeQuery();
+            while(usersResultSet.next()){
+                User newUser = new User(usersResultSet.getInt(1), usersResultSet.getString(2),
+                        usersResultSet.getString(3), usersResultSet.getString(4), usersResultSet.getString(5),
+                        usersResultSet.getString(6));
+                if(usersResultSet.getString(7) != null)
+                    newUser.setAddress(usersResultSet.getString(7));
+                newUser.setPhoneNumber(usersResultSet.getInt(8));
+                if(usersResultSet.getString(9) != null)
+                    newUser.setPicture(usersResultSet.getString(9));
+                users.add(newUser);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
+    public int getNextId() {
+        int id = 0;
+        try {
+            ResultSet maxID = nextIdStatement.executeQuery();
+            id = maxID.getInt(1) + 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+    public void registerNewUser(User user){
+        try {
+            registerNewUserStatement.setString(2, user.getFirstName());
+            registerNewUserStatement.setString(3, user.getLastName());
+            registerNewUserStatement.setString(4, user.getUsername());
+            registerNewUserStatement.setString(5, user.getEmail());
+            registerNewUserStatement.setString(6, user.getPassword());
+            registerNewUserStatement.setString(7, user.getAddress());
+            registerNewUserStatement.setInt(8, user.getPhoneNumber());
+            registerNewUserStatement.setString(9, user.getPicture());
 
-    public void setAdvertisments(ObservableList<Advertisment> advertisments) {
-        this.advertisments = advertisments;
+            registerNewUserStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

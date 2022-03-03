@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat.Controllers;
 
+import ba.unsa.etf.rpr.projekat.Beans.User;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
@@ -24,6 +25,8 @@ public class HomeScreenController {
     private GridPane topBar;
     private Button btnSelektovanaSlika;
     private double x = 0, y = 0;
+    private User currentUser;
+
     @FXML
     public void initialize(){
         try {
@@ -77,6 +80,7 @@ public class HomeScreenController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+    public void setCurrentUser(User user) { this.currentUser = user; }
 
     public void exitAction(ActionEvent actionEvent){
         System.exit(0);

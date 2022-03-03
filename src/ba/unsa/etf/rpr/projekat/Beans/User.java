@@ -20,6 +20,7 @@ public class User {
         this.password = new SimpleStringProperty(password);
         this.address = new SimpleStringProperty();
         this.picture = new SimpleStringProperty("/pictures/avatar-default.png");
+        this.phoneNumber = new SimpleIntegerProperty();
     }
 
     public int getId() { return id; }

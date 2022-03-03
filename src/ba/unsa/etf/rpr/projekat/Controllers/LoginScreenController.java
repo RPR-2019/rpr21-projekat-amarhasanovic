@@ -77,6 +77,7 @@ public class LoginScreenController {
     private void createAccountAction(ActionEvent actionEvent){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RegisterScreen.fxml"));
         RegisterScreenController ctrl = new RegisterScreenController();
+        ctrl.setAdvertismentModel(this.advertismentModel);
         loader.setController(ctrl);
         Parent root = null;
         try {

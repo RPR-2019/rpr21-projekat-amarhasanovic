@@ -4,20 +4,26 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class User {
+    private int id;
     private SimpleStringProperty firstName, lastName, username, email, password, address, picture;
     private SimpleIntegerProperty phoneNumber;
 
     public User() {
         this.picture = new SimpleStringProperty("/pictures/avatar-default.png");
     }
-    public User(SimpleStringProperty firstName, SimpleStringProperty lastName, SimpleStringProperty username, SimpleStringProperty email, SimpleStringProperty password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public User(int id, String firstName, String lastName, String username, String email, String password) {
+        this.id = id;
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.username = new SimpleStringProperty(username);
+        this.email = new SimpleStringProperty(email);
+        this.password = new SimpleStringProperty(password);
+        this.address = new SimpleStringProperty();
         this.picture = new SimpleStringProperty("/pictures/avatar-default.png");
     }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getFirstName() {
         return firstName.get();
@@ -74,7 +80,6 @@ public class User {
     public SimpleStringProperty passwordProperty() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password.set(password);
     }

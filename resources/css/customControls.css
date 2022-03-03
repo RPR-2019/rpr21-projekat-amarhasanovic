@@ -4,14 +4,20 @@
 	-fx-grey-color: #b9b9b9;
 	-fx-focus-color: -fx-secondary-color;
 }
+.t-field-invalid-input {
+	-fx-accent: -fx-primary-color;
+	-fx-background-color: linear-gradient(to top, #FF5252, rgba(255,240,240) 10%);
+	-fx-background-insets: 1 1 0 1, 0 0 1 0;
+	-fx-background-radius: 0;
+}
 
-.text-field {
+.t-field {
 	-fx-accent: -fx-primary-color;
 	-fx-background-color: -fx-grey-color, white;
 	-fx-background-insets: 1 1 0 1, 0 0 1 0;
 	-fx-background-radius: 0;
 }
-.text-field:focused {
+.t-field:focused {
 	-fx-background-color: -fx-primary-color, white;
 }
 .register-button {

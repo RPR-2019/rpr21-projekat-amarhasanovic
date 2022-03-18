@@ -45,6 +45,7 @@ public class LoginScreenController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomeScreen.fxml"));
             HomeScreenController ctrl = new HomeScreenController();
             ctrl.setCurrentUser(currentUser);
+            ctrl.setAdvertismentModel(this.advertismentModel);
             loader.setController(ctrl);
             Parent root = null;
             try {

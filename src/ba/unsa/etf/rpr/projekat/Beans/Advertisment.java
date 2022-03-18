@@ -3,16 +3,17 @@ package ba.unsa.etf.rpr.projekat.Beans;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Advertisment {
+    private int id;
     private SimpleStringProperty title, description, type;
     private User creatorOfAd;
 
     public Advertisment() {
 
     }
-    public Advertisment(SimpleStringProperty title, SimpleStringProperty description, SimpleStringProperty type, User creatorOfAd) {
-        this.title = title;
-        this.description = description;
-        this.type = type;
+    public Advertisment(String title, String description, String type, User creatorOfAd) {
+        this.title = new SimpleStringProperty(title);
+        this.description = new SimpleStringProperty(description);
+        this.type = new SimpleStringProperty(type);
         this.creatorOfAd = creatorOfAd;
     }
     public String getTitle() {
@@ -57,5 +58,13 @@ public class Advertisment {
 
     public void setCreatorOfAd(User creatorOfAd) {
         this.creatorOfAd = creatorOfAd;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

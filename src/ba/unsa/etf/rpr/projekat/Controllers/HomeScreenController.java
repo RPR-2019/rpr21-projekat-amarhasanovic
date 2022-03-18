@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat.Controllers;
 
+import ba.unsa.etf.rpr.projekat.Beans.Advertisment;
 import ba.unsa.etf.rpr.projekat.Beans.AdvertismentModel;
 import ba.unsa.etf.rpr.projekat.Beans.User;
 import com.jfoenix.controls.JFXDrawer;
@@ -43,11 +44,12 @@ public class HomeScreenController {
             screenDragSetUp();
             sideBarSetUp();
             usernameSMB.setText(currentUser.getUsername());
-            tilePane.getChildren().clear();
-            tilePane.getChildren().add(advertisment("demand"));
-            tilePane.getChildren().add(advertisment("offer"));
-            tilePane.getChildren().add(advertisment("demand"));
-            tilePane.getChildren().add(advertisment("offer"));
+            setTilePane();
+//            tilePane.getChildren().clear();
+//            tilePane.getChildren().add(advertisment("demand"));
+//            tilePane.getChildren().add(advertisment("offer"));
+//            tilePane.getChildren().add(advertisment("demand"));
+//            tilePane.getChildren().add(advertisment("offer"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,15 +64,18 @@ public class HomeScreenController {
             stage.setY(mouseEvent.getScreenY() - y);
         });
     }
-    private VBox advertisment(String type) throws IOException {
+    private VBox advertisment(Advertisment advertisment) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Advertisment.fxml"));
         AdvertismentController ctrl = null;
-        if(type.equals("offer"))
-            ctrl = new AdvertismentController("/pictures/jobOffer.png");
-        else if(type.equals("demand"))
-            ctrl = new AdvertismentController("/pictures/jobDemand.png");
+        ctrl = new AdvertismentController(advertisment);
         loader.setController(ctrl);
         return loader.load();
+    }
+    private void setTilePane() throws IOException {
+        tilePane.getChildren().clear();
+        for (Advertisment ad: advertismentModel.getAllAdvertisment()) {
+            tilePane.getChildren().add(advertisment(ad));
+        }
     }
     private void sideBarSetUp() throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/fxml/DrawerContent.fxml"));
@@ -142,7 +147,14 @@ public class HomeScreenController {
             secondaryStage.show();
             secondaryStage.setOnHiding(windowEvent -> {
                 if(ctrl.getNewAdvertisment() != null){
-                    this.advertismentModel.addNewAdvertisment(ctrl.getNewAdvertisment());
+                    Advertisment newAdvertisment = ctrl.getNewAdvertisment();
+                    newAdvertisment.setId(advertismentModel.getNextAdvertismentId());
+                    this.advertismentModel.addNewAdvertisment(newAdvertisment);
+                }
+                try {
+                    setTilePane();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             });
         } catch (IOException e) {

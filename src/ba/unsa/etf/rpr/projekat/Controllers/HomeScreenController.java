@@ -7,11 +7,16 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 
 public class HomeScreenController {
@@ -86,11 +91,32 @@ public class HomeScreenController {
     }
     public void setCurrentUser(User user) { this.currentUser = user; }
 
-    public void exitAction(ActionEvent actionEvent){
-        System.exit(0);
+    @FXML
+    private void logOutAction (ActionEvent actionEvent){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginScreen.fxml"));
+        LoginScreenController ctrl = new LoginScreenController();
+        loader.setController(ctrl);
+        Parent root = null;
+        try {
+            Stage secondaryStage = new Stage();
+            root = loader.load();
+            secondaryStage.setTitle("Login screen");
+
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            secondaryStage.initStyle(StageStyle.TRANSPARENT);
+            secondaryStage.setScene(scene);
+
+            secondaryStage.setScene(scene);
+            ctrl.setStage(secondaryStage);
+            this.stage.hide();
+            secondaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public void minimizeAction(ActionEvent actionEvent){
-        this.stage.setIconified(true);
+    @FXML
+    private void newAddAction (ActionEvent actionEvent){
+
     }
-    public void maximizeAction(ActionEvent actionEvent) { this.stage.setMaximized(!this.stage.isMaximized()); }
 }

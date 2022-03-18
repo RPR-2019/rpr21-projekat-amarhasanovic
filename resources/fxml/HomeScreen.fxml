@@ -75,10 +75,11 @@
                   </ImageView>
                   <SplitMenuButton fx:id="usernameSMB" mnemonicParsing="false" styleClass="account-button" stylesheets="@../css/customControls.css" text="Username ">
                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#newAddAction" text="New add" />
                       <MenuItem mnemonicParsing="false" text="Profile page" />
                       <MenuItem mnemonicParsing="false" text="Settings" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Log out" />
+                        <MenuItem mnemonicParsing="false" onAction="#logOutAction" text="Log out" />
                     </items>
                   </SplitMenuButton>
                </children>

@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat.Controllers;
 
+import ba.unsa.etf.rpr.projekat.Beans.AdvertismentModel;
 import ba.unsa.etf.rpr.projekat.Beans.User;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
@@ -34,6 +35,7 @@ public class HomeScreenController {
     private Button btnSelektovanaSlika;
     private double x = 0, y = 0;
     private User currentUser;
+    private AdvertismentModel advertismentModel;
 
     @FXML
     public void initialize(){
@@ -90,6 +92,9 @@ public class HomeScreenController {
         this.stage = stage;
     }
     public void setCurrentUser(User user) { this.currentUser = user; }
+    public void setAdvertismentModel(AdvertismentModel advertismentModel){
+        this.advertismentModel = advertismentModel;
+    }
 
     @FXML
     private void logOutAction (ActionEvent actionEvent){
@@ -117,6 +122,31 @@ public class HomeScreenController {
     }
     @FXML
     private void newAddAction (ActionEvent actionEvent){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewAddForm.fxml"));
+        NewAddFormController ctrl = new NewAddFormController();
+        loader.setController(ctrl);
+        Parent root = null;
+        try {
+            Stage secondaryStage = new Stage();
+            root = loader.load();
+            secondaryStage.setTitle("Add screen");
 
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            secondaryStage.initStyle(StageStyle.TRANSPARENT);
+            secondaryStage.setScene(scene);
+
+            secondaryStage.setScene(scene);
+            ctrl.setStage(secondaryStage);
+            ctrl.setCurrentUser(this.currentUser);
+            secondaryStage.show();
+            secondaryStage.setOnHiding(windowEvent -> {
+                if(ctrl.getNewAdvertisment() != null){
+                    this.advertismentModel.addNewAdvertisment(ctrl.getNewAdvertisment());
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

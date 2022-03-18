@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -65,18 +67,19 @@ public class RegisterScreenController {
             int id = advertismentModel.getNextId();
             User newUser = new User(id, firstName.getText(), lastName.getText(), username.getText(), email.getText(), password.getText());
             advertismentModel.registerNewUser(newUser);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/HomeScreen.fxml"));
-            HomeScreenController ctrl = new HomeScreenController();
-            ctrl.setCurrentUser(newUser);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginScreen.fxml"));
+            LoginScreenController ctrl = new LoginScreenController();
             loader.setController(ctrl);
             Parent root = null;
             try {
                 Stage secondaryStage = new Stage();
                 root = loader.load();
-                secondaryStage.setTitle("Home screen");
+                secondaryStage.setTitle("Login screen");
 
-                JFXDecorator decorator = new JFXDecorator(secondaryStage, root);
-                Scene scene = new Scene(decorator);
+                Scene scene = new Scene(root);
+                scene.setFill(Color.TRANSPARENT);
+                secondaryStage.initStyle(StageStyle.TRANSPARENT);
+                secondaryStage.setScene(scene);
 
                 secondaryStage.setScene(scene);
                 ctrl.setStage(secondaryStage);

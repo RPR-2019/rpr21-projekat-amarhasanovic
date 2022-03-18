@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.projekat.Controllers;
 
 import ba.unsa.etf.rpr.projekat.Beans.AdvertismentModel;
 import ba.unsa.etf.rpr.projekat.Beans.User;
-import com.jfoenix.controls.JFXDecorator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,7 +63,7 @@ public class RegisterScreenController {
     @FXML
     private void registerAction(ActionEvent actionEvent) {
         if(formValidation()){
-            int id = advertismentModel.getNextId();
+            int id = advertismentModel.getNextUserId();
             User newUser = new User(id, firstName.getText(), lastName.getText(), username.getText(), email.getText(), password.getText());
             advertismentModel.registerNewUser(newUser);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginScreen.fxml"));

@@ -1,8 +1,5 @@
 package ba.unsa.etf.rpr.projekat.Beans;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -14,7 +11,8 @@ public class AdvertismentModel {
     private static AdvertismentModel instance = null;
 
     private PreparedStatement getAllAdvertismentsStatement, findAdvertismentStatement, getAllUsersStatement;
-    private PreparedStatement registerNewUserStatement, nextIdStatement;
+    private PreparedStatement registerNewUserStatement, nextUserIdStatement, addNewAdvertismentStatement;
+    private PreparedStatement nextAdvertismentIdStatement;
     private Connection conn;
 
     public AdvertismentModel(){
@@ -34,7 +32,9 @@ public class AdvertismentModel {
         getAllUsersStatement = conn.prepareStatement("SELECT * FROM users");
         getAllAdvertismentsStatement = conn.prepareStatement("SELECT * FROM advertisment");
         registerNewUserStatement = conn.prepareStatement("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)");
-        nextIdStatement = conn.prepareStatement("SELECT max(id) FROM users");
+        nextUserIdStatement = conn.prepareStatement("SELECT max(id) FROM users");
+        addNewAdvertismentStatement = conn.prepareStatement("INSERT INTO advertisment VALUES (?,?,?,?,?)");
+        nextAdvertismentIdStatement = conn.prepareStatement("SELECT max(id) FROM advertisment");
     }
     public static AdvertismentModel getInstance(){
         if(instance == null)
@@ -112,10 +112,10 @@ public class AdvertismentModel {
         }
         return users;
     }
-    public int getNextId() {
+    public int getNextUserId() {
         int id = 0;
         try {
-            ResultSet maxID = nextIdStatement.executeQuery();
+            ResultSet maxID = nextUserIdStatement.executeQuery();
             id = maxID.getInt(1) + 1;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -134,6 +134,28 @@ public class AdvertismentModel {
             registerNewUserStatement.setString(9, user.getPicture());
 
             registerNewUserStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public int getNextAdvertismentId(){
+        int id = 0;
+        try {
+            ResultSet maxID = nextAdvertismentIdStatement.executeQuery();
+            id = maxID.getInt(1) + 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+    public void addNewAdvertisment(Advertisment advertisment){
+        try {
+            addNewAdvertismentStatement.setString(2, advertisment.getTitle());
+            addNewAdvertismentStatement.setString(3, advertisment.getDescription());
+            addNewAdvertismentStatement.setString(4, advertisment.getType());
+            addNewAdvertismentStatement.setInt(5, advertisment.getCreatorOfAd().getId());
+
+            addNewAdvertismentStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

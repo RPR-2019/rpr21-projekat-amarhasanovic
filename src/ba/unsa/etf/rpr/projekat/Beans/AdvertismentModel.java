@@ -112,6 +112,23 @@ public class AdvertismentModel {
         }
         return users;
     }
+    public List<Advertisment> getAllAdvertisment(){
+        ArrayList<Advertisment> advertismentsList = new ArrayList<>();
+        try {
+            ResultSet addsResultSet = getAllAdvertismentsStatement.executeQuery();
+            ArrayList<User> users = (ArrayList<User>) getAllUsers();
+            while(addsResultSet.next()){
+                User currentUser = users.get(addsResultSet.getInt(5) - 1);
+                Advertisment advertisment = new Advertisment(addsResultSet.getString(2), addsResultSet.getString(3),
+                        addsResultSet.getString(4), currentUser);
+                advertisment.setId(addsResultSet.getInt(1));
+                advertismentsList.add(advertisment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return advertismentsList;
+    }
     public int getNextUserId() {
         int id = 0;
         try {

@@ -10,7 +10,7 @@
 
 <VBox alignment="CENTER" spacing="5.0" styleClass="ad-button" stylesheets="@../css/customControls.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" text="Naziv oglasa" wrapText="true">
+      <JFXButton fx:id="titleBtn" alignment="CENTER" buttonType="RAISED" contentDisplay="TOP" text="Naziv oglasa" wrapText="true">
          <graphic>
             <ImageView fx:id="jobImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,7 +22,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <Label text="Opis posla" textFill="#767676" />
+      <Label fx:id="descriptionLabel" text="Opis posla" textFill="#767676" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

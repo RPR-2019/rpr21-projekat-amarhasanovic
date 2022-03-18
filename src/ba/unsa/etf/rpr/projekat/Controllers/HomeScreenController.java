@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -23,6 +24,8 @@ public class HomeScreenController {
     private TilePane tilePane;
     @FXML
     private GridPane topBar;
+    @FXML
+    private SplitMenuButton usernameSMB;
     private Button btnSelektovanaSlika;
     private double x = 0, y = 0;
     private User currentUser;
@@ -32,6 +35,7 @@ public class HomeScreenController {
         try {
             screenDragSetUp();
             sideBarSetUp();
+            usernameSMB.setText(currentUser.getUsername());
             tilePane.getChildren().clear();
             tilePane.getChildren().add(advertisment("demand"));
             tilePane.getChildren().add(advertisment("offer"));

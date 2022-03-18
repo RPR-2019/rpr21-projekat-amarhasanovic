@@ -73,7 +73,7 @@
                         <Image url="@../pictures/avatar-default.png" />
                      </image>
                   </ImageView>
-                  <SplitMenuButton mnemonicParsing="false" styleClass="account-button" stylesheets="@../css/customControls.css" text="Username ">
+                  <SplitMenuButton fx:id="usernameSMB" mnemonicParsing="false" styleClass="account-button" stylesheets="@../css/customControls.css" text="Username ">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Profile page" />
                       <MenuItem mnemonicParsing="false" text="Settings" />
